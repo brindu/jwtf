@@ -15,6 +15,8 @@ module JWTF
 
   def self.generate
     payload = config.payload
-    ::JWT.encode(payload, nil, 'none')
+    algo = config.algorithm
+    secret = config.secret
+    ::JWT.encode(payload, secret, algo)
   end
 end

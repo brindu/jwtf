@@ -1,6 +1,14 @@
 require "test_helper"
 
 class JWTFTest < Minitest::Test
+
+  # Reset config after each tests
+  def teardown
+    if JWTF.instance_variable_defined?(:@config)
+      JWTF.instance_variable_set(:@config, nil)
+    end
+  end
+
   def test_that_it_has_a_version_number
     refute_nil ::JWTF::VERSION
   end
@@ -29,5 +37,19 @@ class JWTFTest < Minitest::Test
     decoded_token = JWT.decode(token, nil, false)
 
     assert_equal decoded_token[0]['much'], 'payload'
+  end
+
+  def test_generate_signed_token
+    JWTF.configure do |config|
+      config.payload = { so: 'secret' }
+      config.algorithm = 'HS256'
+      config.secret = 'much secret'
+    end
+
+    token = JWTF.generate
+    algo = { algorithm: 'HS256' }
+    decoded_token = JWT.decode(token, 'much secret', true, algo)
+
+    assert_equal decoded_token[0]['so'], 'secret'
   end
 end
