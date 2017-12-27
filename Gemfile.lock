@@ -2,18 +2,25 @@ PATH
   remote: .
   specs:
     jwtf (0.1.0)
+      jwt (~> 2.1.0, >= 2.1.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
     ansi (1.5.0)
     builder (3.2.3)
+    coderay (1.1.2)
+    jwt (2.1.0)
+    method_source (0.9.0)
     minitest (5.10.3)
     minitest-reporters (1.1.19)
       ansi
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     rake (10.5.0)
     ruby-progressbar (1.9.0)
 
@@ -25,6 +32,7 @@ DEPENDENCIES
   jwtf!
   minitest (~> 5.0)
   minitest-reporters (~> 1.1.19)
+  pry (~> 0.11.3)
   rake (~> 10.0)
 
 BUNDLED WITH
