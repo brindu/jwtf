@@ -1,22 +1,25 @@
 require 'jwtf/version'
 require 'jwtf/configuration'
-require 'jwt'
+require 'jwtf/encode'
 
 module JWTF
-  class << self
-    def config
-      @config ||= Configuration.new
-    end
-  end
-
   def self.configure
     yield(config)
   end
 
   def self.generate
-    payload = config.payload
-    algo = config.algorithm
-    secret = config.secret
-    ::JWT.encode(payload, secret, algo)
+    encoder.call()
+  end
+
+  class << self
+    private
+
+    def config
+      @config ||= Configuration.new
+    end
+
+    def encoder
+      @encoder ||= Encode.new(config)
+    end
   end
 end
