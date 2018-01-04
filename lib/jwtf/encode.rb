@@ -8,8 +8,8 @@ module JWTF
       @config = config
     end
 
-    def call
-      payload = config.payload
+    def call(params = nil)
+      payload = config.payload.call(params)
       algo = config.algorithm
       secret = config.secret
       ::JWT.encode(payload, secret, algo)

@@ -5,18 +5,19 @@ class JWTF::ConfigurationTest < Minitest::Test
     @config = JWTF::Configuration.new
   end
 
-  def test_default_token_payload_is_empty_hash
-    default_payload = @config.payload
+  def test_default_token_payload_is_a_proc_and_returning_empty_hash
+    default_payload_block = @config.payload
 
-    assert_instance_of Hash, default_payload
-    assert_empty default_payload
+    assert_instance_of Proc, default_payload_block
+    assert_instance_of Hash, default_payload_block.call
+    assert_empty default_payload_block.call
   end
 
-  def test_set_token_payload
-    payload = { test: 'much payload' }
-    @config.payload = payload
+  def test_set_token_payload_block
+    p = Proc.new { { coucou: 'payload' } }
+    @config.token_payload(&p)
 
-    assert_equal payload, @config.payload
+    assert_equal p, @config.payload
   end
 
   def test_default_algorithm_is_none

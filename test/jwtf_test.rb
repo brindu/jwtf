@@ -14,7 +14,7 @@ class JWTFTest < Minitest::Test
 
   def test_generate_delegates_token_generation_to_encoder
     # https://github.com/seattlerb/minitest/blob/master/lib/minitest/mock.rb#L194
-    # Link to the doc for the test understanding
+    # Link to the doc to understand this mocked test
     mock = Minitest::Mock.new
     mock.expect(:call, nil)
     encoder = JWTF.send(:encoder)

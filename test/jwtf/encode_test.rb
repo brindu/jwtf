@@ -14,17 +14,21 @@ class JWTF::EncodeTest < Minitest::Test
     assert_empty decoded_token[0]
   end
 
-  def test_encodes_payload_when_configured
-    @config.payload = { much: 'payload' }
+  def test_encodes_payload_dynamicaly
+    @config.token_payload do |params|
+      dynamic_value = params[:value]
+      { so_dynamic: dynamic_value }
+    end
+
     encoder = JWTF::Encode.new(@config)
-    token = encoder.call
+    token = encoder.call({ value: 'wow' })
     decoded_token = JWT.decode(token, nil, false)
 
-    assert_equal decoded_token[0]['much'], 'payload'
+    assert_equal decoded_token[0]['so_dynamic'], 'wow'
   end
 
   def test_encodes_signed_token
-    @config.payload = { so: 'secret' }
+    @config.token_payload { { so: 'secret' } }
     @config.algorithm = 'HS256'
     @config.secret = 'much secret'
     encoder = JWTF::Encode.new(@config)
