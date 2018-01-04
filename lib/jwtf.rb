@@ -7,8 +7,8 @@ module JWTF
     yield(config)
   end
 
-  def self.generate
-    encoder.call()
+  def self.generate(params = {})
+    encoder.call(params)
   end
 
   class << self

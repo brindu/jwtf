@@ -8,7 +8,7 @@ module JWTF
       @config = config
     end
 
-    def call(params = nil)
+    def call(params = {})
       payload = config.payload.call(params)
       algo = config.algorithm
       secret = config.secret

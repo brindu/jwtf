@@ -15,8 +15,9 @@ class JWTFTest < Minitest::Test
   def test_generate_delegates_token_generation_to_encoder
     # https://github.com/seattlerb/minitest/blob/master/lib/minitest/mock.rb#L194
     # Link to the doc to understand this mocked test
+    # this also test that the optional argument to generate is an empty hash per default
     mock = Minitest::Mock.new
-    mock.expect(:call, nil)
+    mock.expect(:call, nil, [{}])
     encoder = JWTF.send(:encoder)
     encoder.stub(:call, mock) { JWTF.generate }
     mock.verify
