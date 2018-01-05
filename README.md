@@ -76,8 +76,8 @@ ID of the user and a boolean which acknowledge if he is an admin or not :
 
 ```json
 {
-  uid: 1234,
-  admin: false
+  "uid": 1234,
+  "admin": false
 }
 ```
 
