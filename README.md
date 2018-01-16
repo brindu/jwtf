@@ -1,3 +1,6 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/f4e05fbcc00e7b6458b1/maintainability)](https://codeclimate.com/github/brindu/jwtf/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f4e05fbcc00e7b6458b1/test_coverage)](https://codeclimate.com/github/brindu/jwtf/test_coverage)
+
 # JWT Framer
 
 JWTF allows you to configure how your JSON Web Token are generated. With JWT you
