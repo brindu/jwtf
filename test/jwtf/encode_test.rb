@@ -14,7 +14,7 @@ class JWTF::EncodeTest < Minitest::Test
     assert_empty decoded_token[0]
   end
 
-  def test_encodes_payload_dynamicaly
+  def test_encodes_payload_dynamically
     @config.token_payload do |params|
       dynamic_value = params[:value]
       { so_dynamic: dynamic_value }
@@ -28,9 +28,11 @@ class JWTF::EncodeTest < Minitest::Test
   end
 
   def test_encodes_signed_token
-    @config.token_payload { { so: 'secret' } }
-    @config.algorithm = 'HS256'
-    @config.secret = 'much secret'
+    @config.tap do |c|
+      c.token_payload { { so: 'secret' } }
+      c.algorithm = 'HS256'
+      c.secret = 'much secret'
+    end
     encoder = JWTF::Encode.new(@config)
     token = encoder.call
     algo = { algorithm: 'HS256' }
