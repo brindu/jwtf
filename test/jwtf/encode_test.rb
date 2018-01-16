@@ -40,4 +40,14 @@ class JWTF::EncodeTest < Minitest::Test
 
     assert_equal decoded_token[0]['so'], 'secret'
   end
+
+  def test_set_iat_claim_into_payload
+    @config.use_iat_claim = true
+    encoder = JWTF::Encode.new(@config)
+    token = encoder.call
+    decoded_token = JWT.decode(token, nil, false)
+
+    refute_nil decoded_token[0]['iat']
+    assert_instance_of Integer, decoded_token[0]['iat']
+  end
 end

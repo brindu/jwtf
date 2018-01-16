@@ -35,4 +35,14 @@ class JWTF::ConfigurationTest < Minitest::Test
 
     assert_equal @config.secret, 'much algo'
   end
+
+  def test_iat_claim_is_disabled_by_default
+    assert_equal @config.use_iat_claim, false
+  end
+
+  def test_set_iat_claim_use
+    @config.use_iat_claim = true
+
+    assert_equal @config.use_iat_claim, true
+  end
 end
