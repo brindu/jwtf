@@ -3,11 +3,11 @@ require 'test_helper'
 class JWTF::EncodeTest < Minitest::Test
   def setup
     @config = JWTF::Configuration.new
+    @encoder = JWTF::Encode.new(@config)
   end
 
   def test_encodes_empty_hash_as_default_payload
-    encoder = JWTF::Encode.new(@config)
-    token = encoder.call
+    token = @encoder.call
     decoded_token = JWT.decode(token, nil, false)
 
     assert_instance_of Hash, decoded_token[0]
@@ -19,9 +19,7 @@ class JWTF::EncodeTest < Minitest::Test
       dynamic_value = params[:value]
       { so_dynamic: dynamic_value }
     end
-
-    encoder = JWTF::Encode.new(@config)
-    token = encoder.call({ value: 'wow' })
+    token = @encoder.call({ value: 'wow' })
     decoded_token = JWT.decode(token, nil, false)
 
     assert_equal decoded_token[0]['so_dynamic'], 'wow'
@@ -33,8 +31,7 @@ class JWTF::EncodeTest < Minitest::Test
       c.algorithm = 'HS256'
       c.secret = 'much secret'
     end
-    encoder = JWTF::Encode.new(@config)
-    token = encoder.call
+    token = @encoder.call
     algo = { algorithm: 'HS256' }
     decoded_token = JWT.decode(token, 'much secret', true, algo)
 
@@ -43,8 +40,7 @@ class JWTF::EncodeTest < Minitest::Test
 
   def test_set_iat_claim_into_payload
     @config.use_iat_claim = true
-    encoder = JWTF::Encode.new(@config)
-    token = encoder.call
+    token = @encoder.call
     decoded_token = JWT.decode(token, nil, false)
 
     refute_nil decoded_token[0]['iat']
