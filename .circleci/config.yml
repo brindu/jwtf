@@ -36,14 +36,20 @@ jobs:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
+      - run:
+          name: Setup Code Climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+
       # run tests!
       - run:
           name: run tests
           command: |
             mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "test/**/*_test.rb" | circleci tests split --split-by=timings)"
-
+            ./cc-test-reporter before-build
             bundle exec rake test
+            ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
 
       # collect reports
       - store_test_results:
