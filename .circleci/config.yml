@@ -51,7 +51,7 @@ jobs:
             mkdir /tmp/test-results
             ./cc-test-reporter before-build
             bundle exec rake test
-            ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
+            ./cc-test-reporter after-build --coverage-input-type simplecov --exit-code $?
 
       # collect reports
       - store_test_results:
