@@ -15,6 +15,8 @@ GEM
     jwt (2.1.0)
     method_source (0.9.0)
     minitest (5.10.3)
+    minitest-ci (3.4.0)
+      minitest (>= 5.0.6)
     minitest-reporters (1.1.19)
       ansi
       builder
@@ -38,6 +40,7 @@ DEPENDENCIES
   bundler (~> 1.16)
   jwtf!
   minitest (~> 5.0)
+  minitest-ci (~> 3.4.0)
   minitest-reporters (~> 1.1.19)
   pry (~> 0.11.3)
   rake (~> 10.0)
