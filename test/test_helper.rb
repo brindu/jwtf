@@ -6,6 +6,11 @@ require "jwtf"
 
 require "minitest/autorun"
 require 'minitest/reporters'
+require 'minitest/ci'
+
+if ENV['CIRCLECI']
+  Minitest::Ci.report_dir = '/tmp/test-results'
+end
 
 reporter_options = { color: true }
 Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]
