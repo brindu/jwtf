@@ -108,7 +108,18 @@ JWTF.generate(user_id: 1234)
 
 #### Reserved claims
 
-TODO
+##### Issued At (iat)
+
+Ensuring the presence of `iat` claim into your JWT payload :
+
+```ruby
+JWTF.configure do |config|
+  # When this is true, the iat field will be added in the token payload on
+  # its creation. The iat value will be in UNIX timestamp format.
+  # Default to false
+  config.use_iat_claim = true
+end
+```
 
 ## Development
 
