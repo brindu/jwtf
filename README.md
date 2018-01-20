@@ -121,6 +121,31 @@ JWTF.configure do |config|
 end
 ```
 
+##### Expiration time (exp)
+
+You can give a time of validity to your JWT :
+
+```ruby
+JWTF.configure do |config|
+  # When exp_period is set, the "exp" field will be added to your tokens'
+  # payload. The value is calculated with the total period described with a hash
+  # (see below) converted in seconds added to the token creation timestamp.
+  config.exp_period = { weeks: 5, hours: 3, ... }
+end
+```
+
+Authorized periods symbols are (all singular forms are also available) :
+
+```ruby
+:seconds
+:minutes
+:hours
+:days
+:weeks
+:months
+:years
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

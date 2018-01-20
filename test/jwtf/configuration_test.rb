@@ -45,4 +45,14 @@ class JWTF::ConfigurationTest < Minitest::Test
 
     assert_equal @config.use_iat_claim, true
   end
+
+  def test_expiration_time_not_set_by_default
+    assert_nil @config.exp_period
+  end
+
+  def test_set_expiration_time
+    @config.exp_period = { months: 3, weeks: 1 }
+
+    assert_equal @config.exp_period, { months: 3, weeks: 1 }
+  end
 end

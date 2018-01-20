@@ -46,4 +46,18 @@ class JWTF::EncodeTest < Minitest::Test
     refute_nil decoded_token[0]['iat']
     assert_instance_of Integer, decoded_token[0]['iat']
   end
+
+  def test_set_exp_claim_into_payload
+    @config.exp_period = { months: 2 }
+    token_creation_date = Time.now.to_i
+    token = JWTF::Encode.new(@config).call
+    decoded_token = JWT.decode(token, nil, false)
+    expiration_date = decoded_token.first['exp']
+
+    refute_nil expiration_date
+    # 30 days month equals 2_592_000 seconds
+    # giving 2 seconds lag to the encoder for expiration time approximation
+    assert_operator expiration_date, :<=, token_creation_date + 5_184_000 + 2
+    assert_operator token_creation_date + 5_184_000, :<=, expiration_date
+  end
 end
