@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jwtf (0.1.0)
+    jwtf (0.1.1)
       jwt (~> 2.1.0, >= 2.1.0)
 
 GEM

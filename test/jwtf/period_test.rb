@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'jwtf/period'
 
 class JWTF::PeriodTest < Minitest::Test
   def test_convert_period_in_seconds

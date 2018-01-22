@@ -1,4 +1,5 @@
 require 'jwt'
+require 'jwtf/period'
 
 module JWTF
   class Encode
