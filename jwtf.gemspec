@@ -9,8 +9,16 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Alexandre De Pablo']
   spec.email         = ['alexandre.depablo@gmail.com']
 
-  spec.summary       = 'Easily configure JWT generation'
-  spec.description   = 'Easily configure JWT generation'
+  spec.summary       = 'A gem to shape your JSON Web Token with ease.'
+
+  spec.description   = <<DESC
+JWTF allows you to configure how your JSON Web Token are generated. With JWT you
+are free to choose from a few (a lot !) of options like the signing algorithm
+you crave for, the associated secret key and all the reserved claims you wish to
+use ! JWTF offers you a way to configure most of it for your application, so you
+can concentrate on the access and policy logic you want to put inside your token.
+DESC
+
   spec.homepage      = 'https://github.com/brindu/jwtf'
   spec.license       = 'MIT'
 

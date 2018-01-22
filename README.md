@@ -114,8 +114,8 @@ Ensuring the presence of `iat` claim into your JWT payload :
 
 ```ruby
 JWTF.configure do |config|
-  # When this is true, the iat field will be added in the token payload on
-  # its creation. The iat value will be in UNIX timestamp format.
+  # When this is true, the "iat" field will be added in the token payload on
+  # its creation. The value will be the JWT creation date (a UNIX timestamp)
   # Default to false
   config.use_iat_claim = true
 end
@@ -123,18 +123,18 @@ end
 
 ##### Expiration time (exp)
 
-You can give a time of validity to your JWT :
+You can give a validity time to your JWT :
 
 ```ruby
 JWTF.configure do |config|
-  # When exp_period is set, the "exp" field will be added to your tokens'
-  # payload. The value is calculated with the total period described with a hash
-  # (see below) converted in seconds added to the token creation timestamp.
+  # When exp_period is set, the "exp" field will be added to the tokens'
+  # payload. The JWT will then be valid for the whole period of time specified in
+  # the exp_period hash.
   config.exp_period = { weeks: 5, hours: 3, ... }
 end
 ```
 
-Authorized periods symbols are (all singular forms are also available) :
+Period symbols listed below can be used (all singular forms are also available) :
 
 ```ruby
 :seconds
