@@ -41,7 +41,7 @@ DESC
   spec.add_dependency 'jwt', '~> 2.2.0', '>= 2.2.0'
 
   spec.add_development_dependency 'bundler', '~> 1.16'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'pry', '~> 0.11.3'
   spec.add_development_dependency 'minitest', '~> 5.0'
   spec.add_development_dependency 'minitest-reporters', '~> 1.1.19'
